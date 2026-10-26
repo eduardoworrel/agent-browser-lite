@@ -1,0 +1,39 @@
+{
+  "name": "agent-browser-lite",
+  "version": "0.2.0",
+  "description": "In-page browser tools for agents: compact @eN page snapshots, page actions, and structured runtime observation (events, storage, CSP, resources, forms, links). Zero dependencies.",
+  "type": "module",
+  "main": "./dist/browser.js",
+  "module": "./dist/browser.js",
+  "types": "./src/browser.ts",
+  "exports": {
+    ".": "./dist/browser.js"
+  },
+  "files": [
+    "dist/browser.js",
+    "src/browser.ts",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "npx esbuild src/browser.ts --format=esm --target=es2022 --outfile=dist/browser.js && node -e \"const f='dist/browser.js',s=require('fs');s.writeFileSync(f,s.readFileSync(f,'utf8').replace(/\\/\\* @__PURE__ \\*\\/ /g,''))\"",
+    "test": "for f in test/test_*.mjs; do node \"$f\" || exit 1; done",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "browser",
+    "dom",
+    "automation",
+    "snapshot",
+    "agent",
+    "llm",
+    "tools",
+    "observability"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eduardoworrel/agent-browser-lite.git"
+  },
+  "license": "MIT",
+  "author": "eduardoworrel"
+}
